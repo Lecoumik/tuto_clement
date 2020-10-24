@@ -1,3 +1,20 @@
 1) créer un git
 
 2) installer visual studio code
+
+
+B) installer git
+BONUS - installer avec git en ligne de commande
+
+modifier le fichier
+git add .\script.txt
+ou git add .
+git commit -m "modif"
+git push origin master
+
+--- > setup ok pour coder
+
+1) installe nodeJS
+
+LTS = version table pour coder sur la durée
+
