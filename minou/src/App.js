@@ -3,7 +3,9 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 function App() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState( [] );
+  const [name, setName] = useState( "" );
+  const [message, setMessage] = useState( "" );
 
   function historique() {
     fetch("http://localhost:8080/historique")
@@ -13,10 +15,35 @@ function App() {
         setMessages(result);
       },
       (error) => {
-        setMessages("aie");
+        setMessages( [] );
       }
     )
   }
+
+  function sendMessage() {
+    if(!name || !message)
+      return false;
+    console.log("sendMessage");
+    var url = name+"/"+message;
+    fetch("http://localhost:8080/sendMessage/"+url)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        historique();
+      },
+      (error) => {
+      }
+    )
+
+  }
+
+  function handleChangeName(e) {
+    setName(e.target.value);
+  }
+  function handleChangeMessage(e) {
+    setMessage(e.target.value);
+  }
+
 
   useEffect(() => {
     historique();
@@ -33,14 +60,10 @@ function App() {
           }
         </div>
         <div className="bottom-container">
-          <div className="text">
-          </div>
-          <div className="name">
-
-          </div>
-          <div className="button">
-
-          </div>
+          <textarea key="name" className="text" onChange={handleChangeName}>{name}</textarea>
+          <textarea key="message" className="name" onChange={handleChangeMessage}>{message}</textarea>
+          <button  onClick={() => sendMessage()} className="button">envoyer</button>
+          <button  onClick={() => historique()} className="button">refresh</button>
         </div>
     </div>
   );
