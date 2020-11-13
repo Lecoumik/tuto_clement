@@ -1,3 +1,89 @@
 1) créer un git
 
 2) installer visual studio code
+
+3) installer git
+BONUS - installer avec git en ligne de commande
+
+modifier le fichier
+git add .\script.txt
+ou git add .
+git commit -m "modif"
+git push origin master
+
+--- > setup ok pour coder
+
+1) installe nodeJS
+
+LTS = version table pour coder sur la durée
+
+--> rappel lignes de commande
+
+cd dossier = deplace dans le dossier (CD = Change Directory)
+cd ../ = retour en arriere
+ls = list les fichier actuel
+TAB = auto-completion
+
+reste a faire
+-- lancer
+
+localhost  
+0-255 x4
+0.0.0.0
+0.0.0.1
+...
+255.255.255.255
+
+127.0.0.1 < adresse locale
+
+npx create-react-app minou
+cd minou
+npm start
+
+tu peut voir l'IHM sur localhost:3000
+
+felicitation 😉
+
+à noter, la fichier package.json contient toutes les dépendances necessaire
+si npm start ne fonctionne pas
+>> npm install
+
+--- creation de la base de donnée
+installer pgadmin
+>> installer postgreSQL
+
+Click droit database
+
+    create database
+
+
+click chat
+
+    icone base + logo play
+
+
+
+
+CREATE TABLE chat
+(
+    id INT PRIMARY KEY NOT NULL,
+    nom VARCHAR(32),
+    message VARCHAR(100)
+)
+
+schema > public >table
+click droit > view data > all rows
+
+tu peut ecrire des data puid F6 pour save
+
+
+
+https://expressjs.com/fr/starter/hello-world.html
+creatio d'un dossier api
+copi du code dans un ficheir app.js
+
+cd api
+node app.js
+
+
+npm install sequelize
