@@ -25,7 +25,6 @@ app.get('/', (req,res) => {
 app.get('/sendMessage/:name/:message', (req,res) => {
     var name = req.params.name;
     var message = req.params.message;
-
     db.task('post-message-events', async t => {
         return t.any("INSERT INTO chat (nom, message) VALUES ('"+name+"', '"+message+"')");
     })
@@ -37,6 +36,7 @@ app.get('/sendMessage/:name/:message', (req,res) => {
     });
     res.send(name+" : "+message);
 })
+
 
 
 app.get('/historique', (req,res) => {
