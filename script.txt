@@ -2,7 +2,7 @@
 
 2) installer visual studio code
 
-3) installer git
+B) installer git
 BONUS - installer avec git en ligne de commande
 
 modifier le fichier
@@ -16,7 +16,6 @@ git push origin master
 1) installe nodeJS
 
 LTS = version table pour coder sur la durée
-
 --> rappel lignes de commande
 
 cd dossier = deplace dans le dossier (CD = Change Directory)
