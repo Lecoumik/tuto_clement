@@ -34,7 +34,6 @@ function App() {
       (error) => {
       }
     )
-
   }
 
   function handleChangeName(e) {
