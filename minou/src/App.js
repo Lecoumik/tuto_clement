@@ -50,10 +50,22 @@ function App() {
     historique();
   }, [])
 
+  
+  function prout(x, y, lat, lng, event) {
+    console.log(x, y, lat, lng, event);
+  }
+  
+  function prout2(map, maps) {
+    console.log("yeah !");
+  }
+
   return (
     <div className="App">
       <div className="top-container">
-        <SimpleMap></SimpleMap>
+        <SimpleMap 
+          click={prout}
+          handleApiLoaded={prout2}
+        ></SimpleMap>
       </div>
       <div className="bottom-container">
         <Tractor className="tractor green"/>
