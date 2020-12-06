@@ -1,10 +1,17 @@
 # commencer lancer l'appli
 
-### terminal 1
+### installation des paquets du package.json
+
+cd ./api
+npm install
+cd .././minou
+npm install
+
+### terminal 1 API
 cd ./api
 npm start
 
 
-### terminal 2
+### terminal 2 FRONT
 cd ./minou
 npm start
