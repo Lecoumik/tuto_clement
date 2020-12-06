@@ -70,3 +70,17 @@
     transform: rotate(360deg);
   }
 }
+
+.tractor {
+  width:  75px;
+  height: 75px;
+}
+.red {
+  fill: red;
+}
+.green {
+  fill: green;
+}
+.blue {
+  fill: blue;
+}
