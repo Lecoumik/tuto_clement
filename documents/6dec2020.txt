@@ -1,0 +1,10 @@
+dans package.json, ikl y a des script
+on peut faire ça 
+    "start": "echo 'salut mon beau' && node index.js",
+
+
+gooogle map api 
+github
+https://github.com/google-map-react/google-map-react
+site officiel
+https://cloud.google.com/maps-platform/

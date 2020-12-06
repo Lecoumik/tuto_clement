@@ -62,7 +62,7 @@ function App() {
           <textarea key="name" className="text" onChange={handleChangeName}>{name}</textarea>
           <textarea key="message" className="name" onChange={handleChangeMessage}>{message}</textarea>
           <button  onClick={() => sendMessage()} className="button">envoyer</button>
-          <button  onClick={() => historique()} className="button">rafraichir</button>
+          <button  onClick={() => historique()} className="button">refresh</button>
         </div>
     </div>
   );

@@ -5,10 +5,29 @@ const cors = require('cors');
 
 app.use(cors({}));
 
-
 var pgp = require("pg-promise")(/*options*/);
 var db = pgp("postgres://postgres:beluga@localhost:5432/chat");
 
+
+var gpsList = ['tour de la fnac', 'tour du grand rond', 'bateau'];
+
+
+var gpsExemple = [
+    { id: 1, nom: 'tour de la fnac', message: '43.60583302304571, 1.448622119013915' },
+    { id: 2, nom: 'tour de la fnac', message: '43.60934569289202, 1.4540093627100883' },
+    { id: 3, nom: 'tour de la fnac', message: '43.605073385916135, 1.4567339582455232' },
+    { id: 4, nom: 'tour de la fnac', message: '43.604433166987555, 1.4500036660619386' },
+    { id: 5, nom: 'tour du grand rond', message: '43.59696402160219, 1.4521421074708862' },
+    { id: 6, nom: 'tour du grand rond', message: '43.59620610843473, 1.4536577765180567' },
+    { id: 7, nom: 'tour du grand rond', message: '43.59482093233236, 1.4526473305065801' },
+    { id: 8, nom: 'tour du grand rond', message: '43.595369779507614, 1.4514203603497873' },
+    { id: 9, nom: 'tour du grand rond', message: '43.59696402160219, 1.4521421074708862' },
+    { id: 10, nom: 'bateau', message: '43.58613790320873, 1.4308780153430622' },
+    { id: 11, nom: 'bateau', message: '43.594711038713235, 1.4385285351442416' },
+    { id: 12, nom: 'bateau', message: '43.59978115996657, 1.4384563604291358' },
+    { id: 13, nom: 'bateau', message: '43.60218539802999, 1.435064148819179' },
+    { id: 14, nom: 'bateau', message: '43.60500764185966, 1.4188248379204493' }
+]
 
 function bonjour(name) {
     return "bonjour" + name;
@@ -40,6 +59,26 @@ app.get('/sendMessage/:name/:message', (req,res) => {
     res.send(name+" : "+message);
 })
 
+app.get('/gps', (req,res) => {
+    var html = '<a href="http://localhost:8080/gpsAll">/tout le json</a></br>';
+    html += '<a href="http://localhost:8080/gpsVehicules">/liste des vehicules</a></br>';
+    html += '<a href="http://localhost:8080/gpsMaquette">la maquette</a></br>';
+    
+    res.status(200).send(html);
+})
+
+app.get('/gpsAll', (req,res) => {
+    res.status(200).json(gpsExemple);
+})
+
+app.get('/gpsMaquette', (req,res) => {
+    res.status(200).sendFile("C:/Users/Parayre/Desktop/Minou/tuto_clement/documents/maquette paint.png");
+})
+
+
+app.get('/gpsVehicules', (req,res) => {
+    res.status(200).json(gpsList);
+})
 
 
 app.get('/historique', (req,res) => {
