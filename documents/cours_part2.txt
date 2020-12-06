@@ -1,0 +1,11 @@
+installer postgreSQL
+
+postgres est la base de donnée
+Pgadmin est une interface et permet de se connecter à postgres
+pour faire des requetes plus facilement par exemple
+
+cration de l'api
+https://practicalprogramming.fr/node-js-api/
+
+https://expressjs.com/fr/guide/database-integration.html
+npm install pg-promise
