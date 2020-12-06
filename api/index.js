@@ -15,6 +15,8 @@ function bonjour(name) {
 
 app.listen(8080, () => {
     console.log('bienvenue les minous');
+    console.log('serveur en écoute sur http://localhost:8080/');
+    
 })
 
 
