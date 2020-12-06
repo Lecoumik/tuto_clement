@@ -8,3 +8,9 @@ github
 https://github.com/google-map-react/google-map-react
 site officiel
 https://cloud.google.com/maps-platform/
+
+recuperation d'une clée api
+https://developers.google.com/maps/documentation/javascript/get-api-key
+
+suivi google map API - facturation $$$
+https://console.cloud.google.com/google/maps-apis/overview?project=eng-serenity-297816

@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import SimpleMap from './SimpleMap';
 
 function App() {
   const [messages, setMessages] = useState( [] );
@@ -50,14 +51,18 @@ function App() {
 
   return (
     <div className="App">
-        <div className="top-container">
+      <div className="top-container">
+        <SimpleMap></SimpleMap>
+      </div>
+
+        {/* <div className="top-container">
           {messages.map(item => (
             <div className="line-summary">
               <span>{item.nom}</span> <span>:</span> <span>{item.message}</span>
             </div>
             ))
           }
-        </div>
+        </div> */}
         <div className="bottom-container">
           <textarea key="name" className="text" onChange={handleChangeName}>{name}</textarea>
           <textarea key="message" className="name" onChange={handleChangeMessage}>{message}</textarea>
