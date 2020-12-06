@@ -5,6 +5,7 @@ const cors = require('cors');
 
 app.use(cors({}));
 
+
 var pgp = require("pg-promise")(/*options*/);
 var db = pgp("postgres://postgres:beluga@localhost:5432/chat");
 
