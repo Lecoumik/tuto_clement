@@ -5,52 +5,26 @@ import SimpleMap from './SimpleMap';
 import { ReactComponent as Tractor } from './img/tractor.svg';
 
 function App() {
-  const [messages, setMessages] = useState( [] );
-  const [name, setName] = useState( "" );
-  const [message, setMessage] = useState( "" );
+  const [gpsPoints, setGpsPoints] = useState( null );
 
-  function historique() {
-    fetch("http://localhost:8080/historique")
+  function getAllGpsPoints() {
+    fetch("http://localhost:8080/gpsAll")
     .then(res => res.json())
     .then(
       (result) => {
-        setMessages(result);
+        setGpsPoints(result);
       },
       (error) => {
-        setMessages( [] );
+        setGpsPoints( ["no gps points founded"] );
       }
     )
   }
-
-  function sendMessage() {
-    if(!name || !message)
-      return false;
-    console.log("sendMessage");
-    var url = name+"/"+message;
-    fetch("http://localhost:8080/sendMessage/"+url)
-    .then(res => res.json())
-    .then(
-      (result) => {
-        historique();
-      },
-      (error) => {
-      }
-    )
-  }
-
-  function handleChangeName(e) {
-    setName(e.target.value);
-  }
-  function handleChangeMessage(e) {
-    setMessage(e.target.value);
-  }
-
 
   useEffect(() => {
-    historique();
+    getAllGpsPoints();
   }, [])
 
-  
+
   function prout(x, y, lat, lng, event) {
     console.log(x, y, lat, lng, event);
   }
@@ -65,6 +39,7 @@ function App() {
         <SimpleMap 
           click={prout}
           handleApiLoaded={prout2}
+          gpsPoints={gpsPoints}
         ></SimpleMap>
       </div>
       <div className="bottom-container">
