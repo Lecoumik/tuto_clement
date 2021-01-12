@@ -13,5 +13,5 @@ npm start
 
 
 ### terminal 2 FRONT
-cd ./minou
+cd ./front
 npm start
