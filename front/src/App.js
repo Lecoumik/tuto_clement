@@ -6,6 +6,7 @@ import { ReactComponent as Tractor } from './img/tractor.svg';
 
 function App() {
   const [gpsPoints, setGpsPoints] = useState( null );
+  const [checkbox, setCheckbox] = useState([]);
 
   function getAllGpsPoints() {
     fetch("http://localhost:8080/gpsAll")
@@ -20,6 +21,11 @@ function App() {
     )
   }
 
+  function updateCheck(event) {
+    if (checkbox.includes(event.target.id)) checkbox.splice(checkbox.indexOf(event.target.id),1);
+    else checkbox.push(event.target.id);
+    console.log(checkbox);
+  }
   useEffect(() => {
     getAllGpsPoints();
   }, [])
@@ -43,9 +49,24 @@ function App() {
         ></SimpleMap>
       </div>
       <div className="bottom-container">
-        <Tractor className="tractor green"/>
-        <Tractor className="tractor blue"/>
-        <Tractor className="tractor red"/>
+        <div>
+          <span className="green">Green</span>
+          <input type="checkbox" id="check_green"
+              onChange={updateCheck}/>
+          <Tractor className="tractor green"/>
+        </div>
+        <div>
+          <span className="blue">Blue</span>
+          <input type="checkbox" id="check_blue"
+              onChange={updateCheck}/>
+          <Tractor className="tractor blue"/>
+        </div>
+        <div>
+          <span className="red">Red</span>
+          <input type="checkbox" id="check_red"
+              onChange={updateCheck}/>
+          <Tractor className="tractor red"/>
+        </div>
       </div>
     </div>
   );
