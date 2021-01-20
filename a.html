@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-    #map_canvas {
-        width: 1024px;
-        height: 700px;
-    }
-</style>
+    <link rel="stylesheet" href="a.css" type="text/css" media="screen" />
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBK94YavQZF05dUl2lc5pxVA2XD7XHjfqU&sensor=false"></script>
 
 <script type="text/javascript">
+
+
+document.getElementsByTagName('input').onclick = function(){
+    console.log("e")
+};
+
+
+const list_trace=[];
+function fillColor(idCheckbox,col,element){
+    var checkbox = document.getElementById(idCheckbox);
+    if(checkbox.checked) element.style.boxShadow  = '0 5px 10px 10px '+col;
+    else element.style.boxShadow  = '0 5px 10px 3px rgba(64,65,87,0.23)';
+}
+
+function openOptions(idContainer,button){
+    var element = document.getElementById(idContainer);
+    if(element.style.height=="100px") {element.style.height  = '0px'; button.innerHTML="Open Options";}
+    else {element.style.height  = '100px'; button.innerHTML="Close Options";}
+}
 
 function initialize() {
     var latlng = new google.maps.LatLng(0, 23);
@@ -29,9 +43,11 @@ function initialize() {
             // on prepare un tableau de coordonnées
             var mypath = new Array();
             // on parcour les tracés
+            // on ajoute les coords
             $.each(data, function(i, infos) {
+                if(list_trace.includes(i)){
                 // on recupere les infos du tracé
-                var weight = infos.weigth;
+                var weight = infos.weight;
                 var color = infos.color;
                 // on parse les coordonnées du tracé
                 $.each(infos.coord, function(index, coord) {
@@ -39,7 +55,6 @@ function initialize() {
                     var lng = coord.lng;
                     mypath.push(new google.maps.LatLng(lat, lng));
                 });
-                console.log(color);
                 // on dessine le tracé
                 var polyline = new google.maps.Polyline({
                     path: mypath,
@@ -48,14 +63,100 @@ function initialize() {
                     strokeWeight: weight
                 });
                 polyline.setMap(map);
+                }
             });
         });
     }
+
+    const list_add=[];
+
+    function addCoord() {
+    var latlng = new google.maps.LatLng(0, 23);
+    var myOptions = {
+        zoom: 15,
+          center: { lat: 43.85965, lng: 1.8808027 },
+          mapTypeId: "satellite",
+    };
+
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    var url = "http://localhost:8080/coord";
+
+        $.getJSON(url, function (data) {
+            // on prepare un tableau de coordonnées
+            var mypath = new Array();
+            // on parcour les tracés
+            // on ajoute les coords
+            var lat_add=Number(document.getElementById('lat_input').value);
+            var lng_add=Number(document.getElementById('lng_input').value);
+            list_add.push({"lat":lat_add,"lng":lng_add});
+            data.add={"color":"#0000FF","coord":list_add,"weight":3};
+            $.each(data, function(i, infos) {
+                if(list_trace.includes(i) || i=="add"){
+                // on recupere les infos du tracé
+                var weight = infos.weight;
+                var color = infos.color;
+                // on parse les coordonnées du tracé
+                $.each(infos.coord, function(index, coord) {
+                    var lat = coord.lat;
+                    var lng = coord.lng;
+                    mypath.push(new google.maps.LatLng(lat, lng));
+                });
+                // on dessine le tracé
+                var polyline = new google.maps.Polyline({
+                    path: mypath,
+                    strokeColor: color,
+                    strokeOpacity: 1.0,
+                    strokeWeight: weight
+                });
+                polyline.setMap(map);
+                }
+            });
+        });
+    }
+
+    function list_checked(trace) {
+var list = document.getElementsByTagName('input');
+var res = [];
+for (var i=0; i < list.length; i++) {
+    if(list[i].checked) res.push(list[i].id)
+        }
+if(list_trace.includes(trace)) list_trace.splice(list_trace.indexOf(trace),1);
+else list_trace.push(trace);
+console.log(res,list_trace);
+initialize();
+}
 
     // google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 </head>
 <body onload="initialize()">
+
   <div id="map_canvas"></div>
+  <div id="container_options">
+      <div id="lat"><span id="lat_title">Lat :</span><textarea id="lat_input"></textarea></div>
+      <div id="lng"><span id="lng_title">Lng :</span><textarea id="lng_input"></textarea></div>
+      <div id="enter_coord" onclick="addCoord()">Enter Coord</div>
+  </div>
+  <div id="button_options" onclick="openOptions('container_options',this)">Open Options</div>
+    <!-- bottom container -->
+    <div class="bottom-container">
+        <div onclick="fillColor('check_green','rgb(0, 128, 0, 0.23)',this)">
+          <span class="green">Green</span>
+          <input type="checkbox" id="check_green" onclick="list_checked('gt')"/>
+            <img class="tractor tractor-green" src='./img/tractor.svg'>
+        </div>
+        <div onclick="fillColor('check_blue','rgb(0, 0, 255, 0.23)',this)">
+          <span class="blue">Blue</span>
+          <input type="checkbox" id="check_blue" onclick="list_checked('bt')"/>
+            <img class="tractor tractor-blue" src='./img/tractor.svg'/>
+        </div>
+        <div onclick="fillColor('check_red','rgb(255, 0, 0, 0.23)',this)">
+          <span class="red">Red</span>
+          <input type="checkbox" id="check_red" onclick="list_checked('rt')"/>
+          <img class="tractor tractor-red" src='./img/tractor.svg'>
+        </div>
+      </div>
+
 </body>
 </html>

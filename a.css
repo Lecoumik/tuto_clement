@@ -1,0 +1,126 @@
+
+#map_canvas {
+    left:1%;
+    width: 98%;
+    height: 400px;
+}
+
+.bottom-container{
+    position: absolute;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    background-color:rgb(240,240,240);
+    top:400px;
+    left:1%;
+    width: 98%;
+    height:calc(100% - 400px);
+  }
+  
+  .bottom-container div{
+    display:flex;
+    flex-flow:column nowrap;
+    justify-content:center;
+    align-items:center;
+    box-shadow: 0 5px 10px 3px rgba(64,65,87,0.23);
+    margin : 20px;
+    height:80%;
+    width:20%;
+  }
+  
+  .bottom-container div span{
+    font-weight:bold;
+  }
+  
+
+  img {
+    width:  75px;
+    height: 75px;
+  }
+  .red {
+    color:red;
+  }
+  .green {
+    color:green;
+  }
+  .blue {
+    color:blue;
+  }
+
+  .tractor-red{
+    filter : invert(48%) sepia(79%) saturate(2476%) hue-rotate(0deg) brightness(118%) contrast(119%);
+}
+.tractor-green{
+    filter : invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
+.tractor-blue{
+    filter : invert(48%) sepia(79%) saturate(2476%) hue-rotate(180deg) brightness(118%) contrast(119%);
+}
+
+#container_options{
+    position:absolute;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    top:0px;
+    left:1%;
+    width:98%;
+    height:0px;
+    box-shadow: 0 5px 10px 3px rgba(64,65,87,0.23);
+    background-color: rgb(240,240,240);
+    transition:all ease 1s;
+}
+
+#container_options div{
+    margin-left:10px;
+    width:150px;
+    display:flex;
+    align-items:center;
+}
+
+#lat_title{
+    width:50px;
+}
+
+#lng_title{
+    width:50px;
+}
+
+#enter_coord{
+    width:75px !important;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 12px;
+    text-align:center;
+    cursor:pointer;
+    background: none rgb(255, 255, 255);
+    border: 0px;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+}
+
+#enter_coord:hover{
+    font-weight: bold;
+}
+
+textarea{
+    resize:none;
+}
+
+#button_options{
+    position:absolute;
+    top:10px;
+    left:70%;
+    height: 30px;
+    width: 100px;
+    z-index:2;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 14px;
+    text-align:center;
+    cursor:pointer;
+    background: none rgb(255, 255, 255);
+    border: 0px;
+    padding-top: 7px;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+}
