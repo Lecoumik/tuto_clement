@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Polylines</title>
+    <meta charset="utf-8"/>
+    <title>UnderSun Proto</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBK94YavQZF05dUl2lc5pxVA2XD7XHjfqU&callback=initMap&libraries=&v=weekly"
@@ -23,10 +24,32 @@
       }
     </style>
     <script>
-      // This example creates a 2-pixel-wide red polyline showing the path of
-      // the first trans-Pacific flight between Oakland, CA, and Brisbane,
-      // Australia which was made by Charles Kingsford Smith.
-      function initMap() {
+
+      function apiGetParcelle() {
+        fetch('http://localhost:8080/coord')
+        .then(
+          function(response) {
+            if (response.status !== 200) {
+              console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+              return;
+            }
+            // Examine the text in the response
+            response.json().then(function(data) {
+              initMap(data);
+            });
+          }
+        )
+        .catch(function(err) {
+          console.log('Fetch Error :-S', err);
+        });
+      };
+
+
+
+
+      function initMap(coord) {
+        console.log(coord);
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 15,
           center: { lat: 43.85965, lng: 1.8808027 },
@@ -35,8 +58,8 @@
         const flightPlanCoordinates = [
           { lat: 43.85965740391465, lng: 1.8808027013562427 },
           { lat: 43.85463525545531, lng: 1.877212009357446  },
-          { lat: 43.85549240546536, lng:  1.8753719874653094 },
-          { lat: 43.85821557411262, lng: 1.8770456857812627},          
+          { lat: 43.85549240546536, lng: 1.8753719874653094 },
+          { lat: 43.85821557411262, lng: 1.8770456857812627 },
           { lat: 43.860165038917046, lng:  1.878891045462955},
           { lat: 43.85965740391465, lng: 1.8808027013562427 },
           // { lat: , lng: },
