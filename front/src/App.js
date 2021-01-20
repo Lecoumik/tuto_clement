@@ -3,10 +3,16 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import SimpleMap from './SimpleMap';
 import { ReactComponent as Tractor } from './img/tractor.svg';
+// import MapContainer from './MapContainer';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import GoogleMap from './GoogleMap';
+
 
 function App() {
   const [gpsPoints, setGpsPoints] = useState( null );
   const [checkbox, setCheckbox] = useState([]);
+  const [google, setGoogle] = useState(null); 
+  
 
   function getAllGpsPoints() {
     fetch("http://localhost:8080/gpsAll")
@@ -39,14 +45,39 @@ function App() {
     console.log("yeah !");
   }
 
+  function googleMapRef() {
+    useRef();
+  }
+
   return (
     <div className="App">
       <div className="top-container">
-        <SimpleMap 
+
+      <GoogleMap></GoogleMap>
+
+      <div
+          id="google-map"
+          ref={googleMapRef}
+          style={{ width: '400px', height: '300px' }}/>
+
+      <Map google={google} zoom={14}>
+
+      {/* <Marker onClick={this.onMarkerClick}
+              name={'Current location'} /> */}
+
+      {/* <InfoWindow onClose={this.onInfoWindowClose}>
+          <div>
+            <h1>{this.state.selectedPlace.name}</h1>
+          </div>
+      </InfoWindow> */}
+      </Map>
+        {/* <MapContainer></MapContainer> */}
+
+        {/* <SimpleMap 
           click={prout}
           handleApiLoaded={prout2}
           gpsPoints={gpsPoints}
-        ></SimpleMap>
+        ></SimpleMap> */}
       </div>
       <div className="bottom-container">
         <div>
