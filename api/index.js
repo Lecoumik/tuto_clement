@@ -3,6 +3,7 @@ const app = express()
 const test = require('./test.json')
 const cors = require('cors');
 
+
 app.use(cors({}));
 
 var pgp = require("pg-promise")(/*options*/);
@@ -28,6 +29,30 @@ var gpsExemple = [
     { id: 13, nom: 'bateau', message: '43.60218539802999, 1.435064148819179' },
     { id: 14, nom: 'bateau', message: '43.60500764185966, 1.4188248379204493' }
 ]
+
+var flightPlanCoordinates = [
+    { lat: 43.85965740391465, lng: 1.8808027013562427 },
+    { lat: 43.85463525545531, lng: 1.877212009357446  },
+    { lat: 43.85549240546536, lng:  1.8753719874653094 },
+    { lat: 43.85821557411262, lng: 1.8770456857812627},          
+    { lat: 43.860165038917046, lng:  1.878891045462955},
+    { lat: 43.85965740391465, lng: 1.8808027013562427 },
+    // { lat: , lng: },
+  ];
+
+  var traces = [
+    { lat: 43.85965740391465, lng: 1.8808027013562427 },
+    { lat: 43.85463525545531, lng: 1.877212009357446  },
+    // { lat: , lng: },
+  { lat: 43.85472754509507,  lng: 1.8770008169755021},
+  { lat: 43.85967162465507,  lng: 1.880627596472961},
+  { lat: 43.859801726476014, lng: 1.8803028102493082},
+  { lat: 43.854805612694435, lng: 1.8768023365054924},
+  { lat: 43.85981473664251,  lng: 1.8801404171374816},
+  { lat: 43.85492271390185,  lng: 1.876495593960931},
+  ];
+
+    var coord = {fpc:flightPlanCoordinates,trace:traces};
 
 function bonjour(name) {
     return "bonjour" + name;
@@ -94,3 +119,9 @@ app.get('/historique', (req,res) => {
         res.status(400).json(result);
     });
 })
+
+  // calling functions for map
+  app.get('/coord', (req,res) => {    
+    res.status(200).json(coord);
+})
+
