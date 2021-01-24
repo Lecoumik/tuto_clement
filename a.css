@@ -99,6 +99,19 @@
     box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
 }
 
+#add_poly{
+  width:75px !important;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 12px;
+  text-align:center;
+  cursor:pointer;
+  background: none rgb(255, 255, 255);
+  border: 0px;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+}
+
 #enter_coord:hover{
     font-weight: bold;
 }
